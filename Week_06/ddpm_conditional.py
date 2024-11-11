@@ -47,7 +47,7 @@ class Diffusion:
                 t = (torch.ones(n) * i).long().to(self.device)
                 predicted_noise = model(x, t, labels)
                 if cfg_scale > 0:
-                    uncond_predicted_noise = model(x, t, labels=None)
+                    uncond_predicted_noise = model(x, t)
                     predicted_noise = uncond_predicted_noise + cfg_scale * (predicted_noise - uncond_predicted_noise)
 
                 alpha = self.alpha[t][:, None, None, None]
